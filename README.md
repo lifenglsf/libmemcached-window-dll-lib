@@ -1,0 +1,1 @@
+# libmemcached-window-dll-lib
