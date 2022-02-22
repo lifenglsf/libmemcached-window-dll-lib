@@ -25,7 +25,7 @@ jobs:
           ts: ${{matrix.ts}}
       - name: Download deps
         run: |
-          curl -LO https://github.com/lifenglsf/libmemcached-window-dll-lib/blob/main/${{matrix.arch}}.zip?raw=true
+          curl -L https://github.com/lifenglsf/libmemcached-window-dll-lib/blob/main/${{matrix.arch}}.zip?raw=true -o ${{matrix.arch}}.zip
           7z x ${{matrix.arch}}.zip -o..\deps
       - name: Enable Developer Command Prompt
         uses: ilammy/msvc-dev-cmd@v1
