@@ -13,9 +13,9 @@ jobs:
     runs-on: windows-latest
     steps:
       - name: Checkout memcached
-        uses: actions/checkout@v1
+        uses: actions/checkout@v2
         with:
-          repository: Checkout memcached
+          repository: php-memcached-dev/php-memcached
       - name: Setup PHP
         id: setup-php
         uses: cmb69/setup-php-sdk@v0.2
