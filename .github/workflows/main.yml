@@ -12,9 +12,10 @@ jobs:
           ts: [ts]
     runs-on: windows-latest
     steps:
-      - uses: actions/checkout@v1
       - name: Checkout memcached
-        uses: php-memcached-dev/php-memcached@master
+        uses: actions/checkout@v1
+        with:
+          repository: Checkout memcached
       - name: Setup PHP
         id: setup-php
         uses: cmb69/setup-php-sdk@v0.2
