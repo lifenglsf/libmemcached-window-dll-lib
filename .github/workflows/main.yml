@@ -27,8 +27,6 @@ jobs:
         run: |
           curl -L https://github.com/lifenglsf/libmemcached-window-dll-lib/blob/main/${{matrix.arch}}.zip?raw=true -o ${{matrix.arch}}.zip
           7z x ${{matrix.arch}}.zip -o..\deps
-      - name: show file
-        run: dir /S ..\deps
       - name: Enable Developer Command Prompt
         uses: ilammy/msvc-dev-cmd@v1
         with:
@@ -37,7 +35,7 @@ jobs:
       - name: phpize
         run: phpize
       - name: configure
-        run: configure --enable-memcached=shared --with-php-build=..\deps --with-prefix=${{steps.setup-php.outputs.prefix}}
+        run: configure --enable-memcached=shared --with-php-build=..\deps\${{matrix.arch}} --with-prefix=${{steps.setup-php.outputs.prefix}}
       - name: make
         run: nmake
       - name: test
