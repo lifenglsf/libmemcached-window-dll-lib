@@ -18,7 +18,7 @@ jobs:
           repository: php-memcached-dev/php-memcached
       - name: Setup PHP
         id: setup-php
-        uses: cmb69/setup-php-sdk@v0.2
+        uses: cmb69/setup-php-sdk@v0.3
         with:
           version: ${{matrix.version}}
           arch: ${{matrix.arch}}
