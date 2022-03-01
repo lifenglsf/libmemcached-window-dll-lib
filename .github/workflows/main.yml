@@ -10,7 +10,6 @@ jobs:
           version: ["7.4"]
           arch: [x64]
           ts: [ts]
-          deps:   {zlib,date,hash,json,pcre,reflection,session,spl,standard}
     runs-on: windows-latest
     steps:
       - name: Checkout memcached
@@ -24,7 +23,7 @@ jobs:
           version: ${{matrix.version}}
           arch: ${{matrix.arch}}
           ts: ${{matrix.ts}}
-          deps: ${{matrix.deps}}
+          deps: date,hash,json,pcre,reflection,session,spl,standard,zlib
       - name: Download deps
         run: |
           curl -L https://github.com/lifenglsf/libmemcached-window-dll-lib/blob/main/${{matrix.arch}}.zip?raw=true -o ${{matrix.arch}}.zip
@@ -48,3 +47,5 @@ jobs:
         run: nmake
       - name: test
         run: nmake test TESTS="-j4 --show-diff -g FAIL,BORK,WARN,LEAK tests"
+      - name: test
+        
