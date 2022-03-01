@@ -48,4 +48,5 @@ jobs:
       - name: test
         run: nmake test TESTS="-j4 --show-diff -g FAIL,BORK,WARN,LEAK tests"
       - name: test
+        run: php -r "print_r(new Memcached());"
         
