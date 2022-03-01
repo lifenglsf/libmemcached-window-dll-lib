@@ -42,7 +42,7 @@ jobs:
       - name: phpize
         run: phpize
       - name: configure
-        run: configure --enable-memcached=shared --enable-memcached-session --enable-memcached-json --enable-session --enable-json --enable-date --enable-hash --enable-pcre --enable-reflection --enable-spl --enable-standard --enable-zlib --with-php-build=..\deps --with-prefix=${{steps.setup-php.outputs.prefix}}
+        run: configure --enable-memcached=shared --enable-memcached-session --enable-memcached-json --enable-session --enable-json  --enable-hash --enable-pcre --enable-reflection --enable-spl --enable-standard --enable-zlib --with-php-build=..\deps --with-prefix=${{steps.setup-php.outputs.prefix}}
       - name: make
         run: nmake
       - name: test
