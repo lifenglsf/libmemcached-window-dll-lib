@@ -21,10 +21,6 @@ jobs:
           curl -L http://static.runoob.com/download/memcached-1.4.5-amd64.zip -o memcached.zip
           7z x memcached.zip -o..\mem
           schtasks /create /sc onstart /tn memcached /tr ..\mem\memcached-amd64\memcached.exe
-          
-      - name: get memcached port
-        run: |
-          netstat -ano|findstr "11211"
       - name: Setup PHP
         id: setup-php
         uses: cmb69/setup-php-sdk@v0.3
@@ -50,8 +46,8 @@ jobs:
         run: configure --enable-memcached=shared --enable-memcached-session --enable-memcached-json --with-php-build=..\deps --with-prefix=${{steps.setup-php.outputs.prefix}}
       - name: make
         run: nmake
-      - name: test
-        run: nmake test TESTS="-j4 --show-diff -g FAIL,BORK,WARN,LEAK tests"
+     # - name: test
+     #   run: nmake test TESTS="-j4 --show-diff -g FAIL,BORK,WARN,LEAK tests"
       - name: test
         run: php -r "print_r(new Memcached());"
         
