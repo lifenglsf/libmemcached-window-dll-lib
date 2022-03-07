@@ -46,6 +46,8 @@ jobs:
         run: configure --enable-memcached=shared --enable-memcached-session --enable-memcached-json --with-php-build=..\deps --with-prefix=${{steps.setup-php.outputs.prefix}}
       - name: make
         run: nmake
+      - name: list file
+        run: dir /N
       - name: test
         run: php run-tests.php --show-diff -d extension=memcached.dll ./tests/*.phpt
       #- name: test
