@@ -47,7 +47,7 @@ jobs:
       - name: make
         run: nmake
       - name: list file
-        run: dir /N
+        run: dir php-bin /N
       - name: test
         run: php run-tests.php --show-diff -d extension=memcached.dll ./tests/*.phpt
       #- name: test
