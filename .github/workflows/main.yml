@@ -46,6 +46,10 @@ jobs:
         run: configure --enable-memcached=shared --enable-memcached-session --enable-memcached-json --with-php-build=..\deps --with-prefix=${{steps.setup-php.outputs.prefix}} --with-config-file-path=${{steps.setup-php.outputs.prefix}}
       - name: make
         run: nmake
+      - name: copy init
+        run : copy ${{steps.setup-php.outputs.prefix}}/php.ini-development ${{steps.setup-php.outputs.prefix}}/php.ini
+      - name: show ini config
+        run: php --ini
       - name: list file
         run: dir php-bin /N
       - name: test
