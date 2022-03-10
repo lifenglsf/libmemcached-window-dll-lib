@@ -49,7 +49,11 @@ jobs:
       - name: copy init
         run : copy ${{steps.setup-php.outputs.prefix}}\php.ini-development ${{steps.setup-php.outputs.prefix}}\php.ini
       - name: copy dll
-        run : copy x64\Release_TS\php_memcached.dll  ${{steps.setup-php.outputs.prefix}}\ext
+        run : |
+          dir ..\deps /N
+          copy x64\Release_TS\php_memcached.dll  ${{steps.setup-php.outputs.prefix}}\ext
+          copy ..\deps\libmemcached.dll ${{steps.setup-php.outputs.prefix}}\ext
+          echo 'extesion=memcached' >>${{steps.setup-php.outputs.prefix}}\php.ini
       - name: show ini config
         run: php --ini
       - name: php module
