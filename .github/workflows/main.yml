@@ -50,12 +50,14 @@ jobs:
         run : copy ${{steps.setup-php.outputs.prefix}}\php.ini-development ${{steps.setup-php.outputs.prefix}}\php.ini
       - name: copy dll
         run : copy x64\Release_TS\php_memcached.dll  ${{steps.setup-php.outputs.prefix}}\ext
+      - name: copy memcached.lib
+        run: copy ..\deps\memcached.lib C:\
       - name: show ini config
         run: php --ini
       - name: list file
         run: dir php-bin\ext /N
       - name: test
-        run: php run-tests.php --show-diff -d extension=memcached ./tests/*.phpt
+        run: php -c ${{steps.setup-php.outputs.prefix}} run-tests.php --show-diff -d extension=memcached ./tests/*.phpt
       #- name: test
       #  run: php -r "print_r(new Memcached());"
         
