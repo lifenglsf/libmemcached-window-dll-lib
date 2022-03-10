@@ -52,8 +52,8 @@ jobs:
         run : copy x64\Release_TS\php_memcached.dll  ${{steps.setup-php.outputs.prefix}}\ext
       - name: show ini config
         run: php --ini
-      - name: list file
-        run: dir php-bin\ext /N
+      - name: php module
+        run: php -m
       - name: test
         run: php  run-tests.php --show-diff  ./tests/*.phpt
       #- name: test
