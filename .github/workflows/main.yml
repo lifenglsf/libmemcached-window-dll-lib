@@ -51,7 +51,7 @@ jobs:
       - name: show ini config
         run: php --ini
       - name: list file
-        run: dir php-bin /N
+        run: dir php-bin\ext /N
       - name: test
         run: php run-tests.php --show-diff -d extension=memcached.dll ./tests/*.phpt
       #- name: test
