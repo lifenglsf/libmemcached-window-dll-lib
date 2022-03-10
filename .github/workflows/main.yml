@@ -47,7 +47,7 @@ jobs:
       - name: make
         run: nmake
       - name: copy init
-        run : copy ${{steps.setup-php.outputs.prefix}}/php.ini-development ${{steps.setup-php.outputs.prefix}}/php.ini
+        run : copy ${{steps.setup-php.outputs.prefix}}\php.ini-development ${{steps.setup-php.outputs.prefix}}\php.ini
       - name: show ini config
         run: php --ini
       - name: list file
