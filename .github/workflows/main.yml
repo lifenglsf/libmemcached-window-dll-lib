@@ -55,7 +55,7 @@ jobs:
       - name: list file
         run: dir php-bin\ext /N
       - name: test
-        run: php -c ${{steps.setup-php.outputs.prefix}} run-tests.php --show-diff -d extension=memcached ./tests/*.phpt
+        run: php  run-tests.php --show-diff  ./tests/*.phpt
       #- name: test
       #  run: php -r "print_r(new Memcached());"
         
