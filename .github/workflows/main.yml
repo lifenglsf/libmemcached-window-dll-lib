@@ -46,11 +46,12 @@ jobs:
         run: configure --enable-memcached=shared --enable-memcached-session --enable-memcached-json --with-php-build=..\deps --with-prefix=${{steps.setup-php.outputs.prefix}} --with-config-file-path=${{steps.setup-php.outputs.prefix}}
       - name: make
         run: nmake
-    
+      - name: show file
+        run: dir x64\Release_TS /N
       - name: show ini config
-        run: x64\Release_TS\php --ini
+        run: x64\Release_TS\php.exe --ini
       - name: php module
-        run: x64\Release_TS\php -m
+        run: x64\Release_TS\php.exe -m
       - name: test
         run: x64\Release_TS\php.exe  run-tests.php --show-diff  ./tests/*.phpt
       #- name: test
