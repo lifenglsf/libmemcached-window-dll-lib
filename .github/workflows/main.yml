@@ -49,7 +49,7 @@ jobs:
       - name: make install
         run: nmake install
       - name: show file
-        run: dir x64\Release_TS /N
+        run: dir ${{steps.setup-php.outputs.prefix}} /N
       - name: show ini config
         run: php --ini
       - name: php module
