@@ -49,9 +49,9 @@ jobs:
       - name: make install
         run: nmake install
       - name: copy ini
-        run : |
-          copy ${{steps.setup-php.outputs.prefix}}\php.ini-development ${{steps.setup-php.outputs.prefix}}\php.ini
-          echo 'extesion=memcached' >>${{steps.setup-php.outputs.prefix}}\php.ini
+        run : copy ${{steps.setup-php.outputs.prefix}}\php.ini-development ${{steps.setup-php.outputs.prefix}}\php.ini
+      - name: add memcached ext
+          echo "extesion=memcached" >>${{steps.setup-php.outputs.prefix}}\php.ini
       - name: show file
         run: dir ${{steps.setup-php.outputs.prefix}} /N /S
       - name: show ini config
