@@ -67,6 +67,12 @@ jobs:
         run: php -m
       - name: test
         run: php  run-tests.php --show-diff  ./tests/*.phpt
+      - name: create release
+        uses: ncipollo/release-action@v1
+        with:
+          artifacts: "${{steps.setup-php.outputs.prefix}}/libmemcached.dll,${{steps.setup-php.outputs.prefix}}/ext/php_memcached.dll"
+          token: ${{ secrets.GITHUB_TOKEN }}
+          prerelease: true
       #- name: test
       #  run: php -r "print_r(new Memcached());"
         
