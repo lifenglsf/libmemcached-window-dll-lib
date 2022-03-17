@@ -21,6 +21,8 @@ jobs:
           curl -L http://static.runoob.com/download/memcached-1.4.5-amd64.zip -o memcached.zip
           7z x memcached.zip -o..\mem
           schtasks /create /sc onstart /tn memcached /tr ..\mem\memcached-amd64\memcached.exe
+      - name: start memcached
+        run: sc start memcached
       - name: Setup PHP
         id: setup-php
         uses: cmb69/setup-php-sdk@v0.3
