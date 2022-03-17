@@ -65,8 +65,8 @@ jobs:
         run: php --ini
       - name: php module
         run: php -m
-      - name: test
-        run: nmake test
+      #- name: test
+      #  run: nmake test
       - name: create release
         uses: ncipollo/release-action@v1
         with:
