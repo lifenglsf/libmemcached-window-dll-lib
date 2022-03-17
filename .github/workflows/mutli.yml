@@ -7,7 +7,7 @@ jobs:
         shell: cmd
     strategy:
       matrix:
-          version: ["7.4","8.0","8.1"]
+          version: ["7.4"]
           arch: [x64,x86]
           ts: [ts,nts]
     runs-on: windows-latest
@@ -43,7 +43,7 @@ jobs:
     defaults:
       run:
         shell: cmd
-    runs-on: windows-latest
+    runs-on:  [self-hosted]
     steps:
       - name: phpize
         run: phpize
