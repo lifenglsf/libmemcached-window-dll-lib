@@ -55,7 +55,7 @@ jobs:
       - name: copy libmemcached 
         run:  copy ..\deps\bin\libmemcached.dll ${{steps.setup-php.outputs.prefix}}\ext
       - name: set extension dir
-        run : echo extension_dir=ext; >>${{steps.setup-php.outputs.prefix}}\php.ini
+        run : echo extension_dir="${{steps.setup-php.outputs.prefix}}\ext"; >>${{steps.setup-php.outputs.prefix}}\php.ini
       - name: extension path
         run: php -i|grep "extension_dir"
       - name: add memcached ext
