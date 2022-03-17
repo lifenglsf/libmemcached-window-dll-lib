@@ -53,7 +53,7 @@ jobs:
       - name: copy ini
         run: copy ${{steps.setup-php.outputs.prefix}}\php.ini-development ${{steps.setup-php.outputs.prefix}}\php.ini
       - name: copy libmemcached 
-        run:  copy ..\deps\lib\libmemcached.dll ${{steps.setup-php.outputs.prefix}}\ext
+        run:  copy ..\deps\bin\libmemcached.dll ${{steps.setup-php.outputs.prefix}}\ext
       - name: set extension dir
         run : echo extension_dir=ext; >>${{steps.setup-php.outputs.prefix}}\php.ini
       - name: extension path
