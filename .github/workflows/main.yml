@@ -53,7 +53,6 @@ jobs:
       - name: set extension dir
         run : echo extension_dir=ext; >>${{steps.setup-php.outputs.prefix}}\php.ini
       - name: extension path
-      - name: extension path
         run: php -i|grep "extension_dir"
       - name: add memcached ext
         run : echo extension=memcached; >>${{steps.setup-php.outputs.prefix}}\php.ini
