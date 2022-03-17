@@ -1,15 +1,15 @@
 name: Build and Test on Windows
 on: [push]
 jobs:
-  windows:
+  pre:
     defaults:
       run:
         shell: cmd
     strategy:
       matrix:
-          version: ["7.4"]
-          arch: [x64]
-          ts: [ts]
+          version: ["7.4","8.0","8.1"]
+          arch: [x64,x86]
+          ts: [ts,nts]
     runs-on: windows-latest
     steps:
       - name: Checkout memcached
@@ -33,13 +33,15 @@ jobs:
         run: |
           curl -L https://github.com/lifenglsf/libmemcached-window-dll-lib/blob/main/${{matrix.arch}}.zip?raw=true -o ${{matrix.arch}}.zip
           7z x ${{matrix.arch}}.zip -o..\deps
-      
-          
       - name: Enable Developer Command Prompt
         uses: ilammy/msvc-dev-cmd@v1
         with:
           arch: ${{matrix.arch}}
           toolset: ${{steps.setup-php.outputs.toolset}}
+  ts74:
+    needs: pre
+    runs-on: windows-latest
+    steps:
       - name: phpize
         run: phpize
       - name: configure
@@ -48,7 +50,6 @@ jobs:
         run: nmake
       - name: make install
         run: nmake install
-     
       - name: copy ini
         run: copy ${{steps.setup-php.outputs.prefix}}\php.ini-development ${{steps.setup-php.outputs.prefix}}\php.ini
       - name: copy libmemcached 
@@ -67,13 +68,4 @@ jobs:
         run: php -m
       #- name: test
       #  run: nmake test
-      - name: create release
-        uses: ncipollo/release-action@v1
-        with:
-          artifacts: "${{steps.setup-php.outputs.prefix}}/libmemcached.dll,${{steps.setup-php.outputs.prefix}}/ext/php_memcached.dll"
-          token: ${{ secrets.GITHUB_TOKEN }}
-          prerelease: true
-          tag: latest
-      #- name: test
-      #  run: php -r "print_r(new Memcached());"
         
