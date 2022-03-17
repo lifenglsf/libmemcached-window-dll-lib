@@ -22,7 +22,7 @@ jobs:
           7z x memcached.zip -o..\mem
           schtasks /create /sc onstart /tn memcached /tr ..\mem\memcached-amd64\memcached.exe
       - name: start memcached
-        run: sc start "memcached"
+        run: schtasks /run /tn memcached
       - name: Setup PHP
         id: setup-php
         uses: cmb69/setup-php-sdk@v0.3
