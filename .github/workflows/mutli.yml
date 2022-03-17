@@ -40,6 +40,9 @@ jobs:
           toolset: ${{steps.setup-php.outputs.toolset}}
   ts74:
     needs: pre
+    defaults:
+      run:
+        shell: cmd
     runs-on: windows-latest
     steps:
       - name: phpize
