@@ -5,6 +5,9 @@ jobs:
     defaults:
       run:
         shell: cmd
+    strategy:
+      matrix:
+          arch: [x64]
     runs-on: windows-latest
     steps:
       - name: Checkout memcached
