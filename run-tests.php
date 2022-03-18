@@ -719,7 +719,7 @@ HELP;
         }
 
         junit_save_xml();
-var_dump(getenv('REPORT_EXIT_STATUS'));
+var_dump("report exit status"，getenv('REPORT_EXIT_STATUS'));
         if (getenv('REPORT_EXIT_STATUS') !== '0' &&
             getenv('REPORT_EXIT_STATUS') !== 'no' && ($sum_results['FAILED'] || $sum_results['BORKED'] || $sum_results['LEAKED'])) {
             exit(1);
