@@ -59,14 +59,14 @@ jobs:
         run: dir ${{steps.setup-php.outputs.prefix}} /N /S
       - name: extension path
         run: php -i|grep "extension_dir"
-      #- name: add memcached ext
-      #  run : echo extension=memcached; >>${{steps.setup-php.outputs.prefix}}\php.ini
+      - name: add memcached ext
+        run : echo extension=memcached; >>${{steps.setup-php.outputs.prefix}}\php.ini
       - name: show ini config
         run: php --ini
       - name: php module
         run: php -m
       - name: test
-        run: php run-tests.php -v -d extension=memcached ./tests/*.phpt
+        run: php run-tests.php -v tests/*.phpt
       #- name: create release
       #  uses: ncipollo/release-action@v1
       #  with:
