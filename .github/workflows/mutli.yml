@@ -41,7 +41,7 @@ jobs:
           ts: [ts]
     steps:
       - name: pwd
-        run: echo $pwd
+        run: echo %pwd%
       - name: Setup PHP
         id: setup-php
         uses: cmb69/setup-php-sdk@v0.3
