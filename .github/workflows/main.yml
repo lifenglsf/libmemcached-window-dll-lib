@@ -10,7 +10,7 @@ jobs:
           version: ["7.4"]
           arch: [x64]
           ts: [ts]
-    runs-on: windows-latest
+    runs-on: windows-2019
     steps:
       - name: Checkout memcached
         uses: actions/checkout@v2
@@ -65,15 +65,15 @@ jobs:
         run: php --ini
       - name: php module
         run: php -m
-      #- name: test
-      #  run: nmake test
-      - name: create release
-        uses: ncipollo/release-action@v1
-        with:
-          artifacts: "${{steps.setup-php.outputs.prefix}}/libmemcached.dll,${{steps.setup-php.outputs.prefix}}/ext/php_memcached.dll"
-          token: ${{ secrets.GITHUB_TOKEN }}
-          prerelease: true
-          tag: latest
+      - name: test
+        run: nmake test
+      #- name: create release
+      #  uses: ncipollo/release-action@v1
+      #  with:
+      #    artifacts: "${{steps.setup-php.outputs.prefix}}/libmemcached.dll,${{steps.setup-php.outputs.prefix}}/ext/php_memcached.dll"
+      #    token: ${{ secrets.GITHUB_TOKEN }}
+      #    prerelease: true
+      #    tag: latest
       #- name: test
       #  run: php -r "print_r(new Memcached());"
         
