@@ -84,6 +84,7 @@ function main()
 +-----------------------------------------------------------+
 
 NO_PROC_OPEN_ERROR;
+        echo "exit 6666";
         exit(1);
     }
 
@@ -522,6 +523,7 @@ NO_PROC_OPEN_ERROR;
                     break;
                 case '--version':
                     echo '$Id: 19b7f5cb4015d00823d154fd0b256389c2d8d6cc $' . "\n";
+                    echo "exit 7777";
                     exit(1);
 
                 default:
@@ -615,6 +617,7 @@ Options:
     --no-clean  Do not execute clean section if any.
 
 HELP;
+echo "exit 8888";
                     exit(1);
             }
         }
@@ -719,10 +722,11 @@ HELP;
         }
 
         junit_save_xml();
-var_dump("report exit status"，getenv('REPORT_EXIT_STATUS'));
+        var_dump("report exit status",getenv('REPORT_EXIT_STATUS'));
         if (getenv('REPORT_EXIT_STATUS') !== '0' &&
             getenv('REPORT_EXIT_STATUS') !== 'no' && ($sum_results['FAILED'] || $sum_results['BORKED'] || $sum_results['LEAKED'])) {
-            exit(1);
+                echo "exit 2222";
+           return;
         }
 
         return;
@@ -2911,6 +2915,7 @@ function generate_diff($wanted, $wanted_re, $output)
 function error($message)
 {
     echo "ERROR: {$message}\n";
+    echo "exit 3333";
     exit(1);
 }
 
