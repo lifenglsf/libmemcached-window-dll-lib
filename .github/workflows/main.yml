@@ -33,8 +33,10 @@ jobs:
         run: |
           curl -L https://github.com/lifenglsf/libmemcached-window-dll-lib/blob/main/${{matrix.arch}}.zip?raw=true -o ${{matrix.arch}}.zip
           7z x ${{matrix.arch}}.zip -o..\deps
-      
-          
+      - name: show env
+        run: |
+          set
+          copy a b
       - name: Enable Developer Command Prompt
         uses: ilammy/msvc-dev-cmd@v1
         with:
