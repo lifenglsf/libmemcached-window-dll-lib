@@ -66,7 +66,7 @@ jobs:
       - name: php module
         run: php -m
       - name: test
-        run: php run-tests.php --show-diff -d extension=mmemcached ./tests/*.phpt
+        run: php run-tests.php --show-diff -d extension=memcached ./tests/*.phpt
       #- name: create release
       #  uses: ncipollo/release-action@v1
       #  with:
