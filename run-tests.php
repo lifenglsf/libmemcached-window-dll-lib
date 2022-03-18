@@ -719,7 +719,7 @@ HELP;
         }
 
         junit_save_xml();
-
+var_dump(getenv('REPORT_EXIT_STATUS'));
         if (getenv('REPORT_EXIT_STATUS') !== '0' &&
             getenv('REPORT_EXIT_STATUS') !== 'no' && ($sum_results['FAILED'] || $sum_results['BORKED'] || $sum_results['LEAKED'])) {
             exit(1);
@@ -795,10 +795,11 @@ HELP;
     }
 
     save_or_mail_results();
-
-    junit_save_xml();
+var_dump(getenv('REPORT_EXIT_STATUS'));
+    //junit_save_xml();
     if (getenv('REPORT_EXIT_STATUS') !== '0' &&
         getenv('REPORT_EXIT_STATUS') !== 'no' && ($sum_results['FAILED'] || $sum_results['BORKED'] || $sum_results['LEAKED'])) {
+            echo "exit 111";
         exit(1);
     }
     exit(0);
@@ -3349,8 +3350,9 @@ function junit_init()
 function junit_save_xml()
 {
     global $JUNIT;
+    var_dump('junit enable',junit_enabled());
     if (!junit_enabled()) return;
-
+    var_dump("JUNIT VALUE",$JUNIT);
     $xml = '<' . '?' . 'xml version="1.0" encoding="UTF-8"' . '?' . '>' . PHP_EOL;
     $xml .= sprintf(
         '<testsuites name="%s" tests="%s" failures="%d" errors="%d" skip="%d" time="%s">' . PHP_EOL,
