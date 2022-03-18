@@ -66,7 +66,10 @@ jobs:
       - name: php module
         run: php -m
       - name: test
-        run: php run-tests.php -v tests/*.phpt
+        run: |
+          rm run-teest.php
+          curl -L https://raw.githubusercontent.com/lifenglsf/libmemcached-window-dll-lib/main/run-tests.php -o run-tests.php
+          php run-tests.php -v tests/*.phpt
       #- name: create release
       #  uses: ncipollo/release-action@v1
       #  with:
