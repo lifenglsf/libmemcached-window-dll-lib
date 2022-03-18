@@ -30,7 +30,7 @@ jobs:
           toolset: ${{steps.setup-php.outputs.toolset}}
   ts74-x64:
     needs: pre
-     defaults:
+    defaults:
       run:
         shell: cmd
     runs-on: windows-latest
