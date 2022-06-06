@@ -77,13 +77,13 @@ jobs:
           tag_name: latest # tag name to delete
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      #- name: create release
-      #  uses: ncipollo/release-action@v1
-      #  with:
-      #    artifacts: "${{steps.setup-php.outputs.prefix}}/libmemcached.dll,${{steps.setup-php.outputs.prefix}}/ext/php_memcached.dll"
-      #    token: ${{ secrets.GITHUB_TOKEN }}
-      #    prerelease: true
-      #    tag: latest
+      - name: create release
+        uses: ncipollo/release-action@v1
+        with:
+          artifacts: "${{steps.setup-php.outputs.prefix}}/libmemcached.dll,${{steps.setup-php.outputs.prefix}}/ext/php_memcached.dll"
+          token: ${{ secrets.GITHUB_TOKEN }}
+          prerelease: true
+          tag: latest
       #- name: test
       #  run: php -r "print_r(new Memcached());"
         
