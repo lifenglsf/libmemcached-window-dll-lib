@@ -65,8 +65,8 @@ jobs:
         run: php --ini
       - name: php module
         run: php -m
-      - name: test
-        run: |
+     # - name: test
+     #   run: |
           #rm run-test.php
           #curl -L https://raw.githubusercontent.com/lifenglsf/libmemcached-window-dll-lib/main/run-tests.php -o run-tests.php
           #php run-tests.php --show-diff -g FAIL,BORK,WARN,LEAK tests/*.phpt
