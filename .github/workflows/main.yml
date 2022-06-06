@@ -70,6 +70,12 @@ jobs:
           #rm run-test.php
           #curl -L https://raw.githubusercontent.com/lifenglsf/libmemcached-window-dll-lib/main/run-tests.php -o run-tests.php
           #php run-tests.php --show-diff -g FAIL,BORK,WARN,LEAK tests/*.phpt
+      - name: create zip
+        uses: papeloto/action-zip@v1
+        with:
+          files: ${{steps.setup-php.outputs.prefix}}/libmemcached.dll ${{steps.setup-php.outputs.prefix}}/ext/php_memcached.dll
+          dest: ${{steps.setup-php.outputs.prefix}}/php-7.4-x64.zip
+          
       - name: delete_tag
         uses: dev-drprasad/delete-tag-and-release@v0.2.0
         with:
@@ -80,7 +86,7 @@ jobs:
       - name: create release
         uses: ncipollo/release-action@v1
         with:
-          artifacts: "${{steps.setup-php.outputs.prefix}}/libmemcached.dll,${{steps.setup-php.outputs.prefix}}/ext/php_memcached.dll"
+          artifacts: "${{steps.setup-php.outputs.prefix}}/php-7.4-x64.zip"
           token: ${{ secrets.GITHUB_TOKEN }}
           prerelease: true
           tag: latest
