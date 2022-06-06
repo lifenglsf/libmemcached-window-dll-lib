@@ -74,7 +74,7 @@ jobs:
         uses: papeloto/action-zip@v1
         with:
           files: ${{steps.setup-php.outputs.prefix}}/libmemcached.dll ${{steps.setup-php.outputs.prefix}}/ext/php_memcached.dll
-          dest: ${{steps.setup-php.outputs.prefix}}/php-7.4-x64.zip
+          dest: php-7.4-x64.zip
           
       - name: delete_tag
         uses: dev-drprasad/delete-tag-and-release@v0.2.0
