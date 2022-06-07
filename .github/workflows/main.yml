@@ -7,7 +7,7 @@ jobs:
         shell: cmd
     strategy:
       matrix:
-          version: ["7.4"]
+          version: ["8.1"]
           arch: [x64,x86]
           ts: [ts]
     runs-on: windows-2019
