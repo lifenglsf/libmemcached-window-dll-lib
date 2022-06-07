@@ -19,10 +19,6 @@ jobs:
           curl -L http://static.runoob.com/download/memcached-1.4.5-amd64.zip -o memcached.zip
           7z x memcached.zip -o.\mem
           mem\memcached-amd64\memcached.exe -d
-      - name: create dir
-        run: |
-          mkdir -p ${{github.workspace}}/php7.4-x64-ts ${{github.workspace}}/php7.4-x64-nts ${{github.workspace}}/php80-x64-ts ${{github.workspace}}/php7.4-x64-nts ${{github.workspace}}/php8.1-x64-ts ${{github.workspace}}/php7.4-x64-nts
-    
       
   ts74-x64:
     needs: pre
@@ -36,6 +32,9 @@ jobs:
           arch: [x64]
           ts: [ts]
     steps:
+      - name: create dir
+        run: |
+          mkdir -p ${{github.workspace}}/php${{matrix.version}}-${{matrix.arch}}-${{matrix.ts}}
       - name: Checkout memcached
         uses: actions/checkout@v2
         with:
@@ -61,8 +60,6 @@ jobs:
         run: |
           phpize
       - name: configure
-      
-      
         run: |
           configure --enable-memcached=shared --enable-memcached-session --enable-memcached-json --with-php-build=..\deps --with-prefix=${{steps.setup-php.outputs.prefix}} --with-config-file-path=${{steps.setup-php.outputs.prefix}}
       - name: make
@@ -96,7 +93,7 @@ jobs:
       #  run: |
       #    zip -r ${{steps.setup-php.outputs.prefix}}/php-7.4-x64.zip ${{steps.setup-php.outputs.prefix}}/libmemcached.dll ${{steps.setup-php.outputs.prefix}}/ext/php_memcached.dll
   create_tag:   
-    needs: pre
+    needs: ts74-x64
     defaults:
       run:
         shell: cmd
