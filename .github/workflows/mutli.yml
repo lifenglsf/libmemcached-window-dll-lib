@@ -19,15 +19,7 @@ jobs:
           curl -L http://static.runoob.com/download/memcached-1.4.5-amd64.zip -o memcached.zip
           7z x memcached.zip -o.\mem
           mem\memcached-amd64\memcached.exe -d
-      - name: Download deps
-        run: |
-          curl -L https://github.com/lifenglsf/libmemcached-window-dll-lib/blob/main/${{matrix.arch}}.zip?raw=true -o ${{matrix.arch}}.zip
-          7z x ${{matrix.arch}}.zip -o..\deps
-      - name: Enable Developer Command Prompt
-        uses: ilammy/msvc-dev-cmd@v1
-        with:
-          arch: ${{matrix.arch}}
-          toolset: ${{steps.setup-php.outputs.toolset}}
+      -
   ts74-x64:
     needs: pre
     defaults:
@@ -40,6 +32,7 @@ jobs:
           arch: [x64]
           ts: [ts]
     steps:
+     
       - name: Setup PHP
         id: setup-php
         uses: cmb69/setup-php-sdk@v0.3
@@ -48,6 +41,15 @@ jobs:
           arch: ${{matrix.arch}}
           ts: ${{matrix.ts}}
           deps: zlib
+      - name: Download deps
+        run: |
+          curl -L https://github.com/lifenglsf/libmemcached-window-dll-lib/blob/main/${{matrix.arch}}.zip?raw=true -o ${{matrix.arch}}.zip
+          7z x ${{matrix.arch}}.zip -o..\deps
+      - name: Enable Developer Command Prompt
+        uses: ilammy/msvc-dev-cmd@v1
+        with:
+          arch: ${{matrix.arch}}
+          toolset: ${{steps.setup-php.outputs.toolset}}
       - name: phpize
         run: |
           phpize
