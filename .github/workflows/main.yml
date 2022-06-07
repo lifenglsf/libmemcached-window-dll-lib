@@ -73,7 +73,6 @@ jobs:
       - name: create zip
         run: |
           zip -r ${{steps.setup-php.outputs.prefix}}/php-7.4-x64.zip ${{steps.setup-php.outputs.prefix}}/libmemcached.dll ${{steps.setup-php.outputs.prefix}}/ext/php_memcached.dll
-          dest:
           
       - name: delete_tag
         uses: dev-drprasad/delete-tag-and-release@v0.2.0
