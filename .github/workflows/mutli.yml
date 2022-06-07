@@ -25,7 +25,7 @@ jobs:
     defaults:
       run:
         shell: cmd
-    runs-on: windows-latest
+    runs-on: windows-2019
     strategy:
       matrix:
           version: ["7.4","8.0","8.1"]
