@@ -34,7 +34,7 @@ jobs:
     steps:
       - name: create dir
         run: |
-          mkdir -p ${{github.workspace}}/php${{matrix.version}}-${{matrix.arch}}-${{matrix.ts}}
+          mkdir -p ${{github.workspace}}\php${{matrix.version}}-${{matrix.arch}}-${{matrix.ts}}
       - name: Checkout memcached
         uses: actions/checkout@v2
         with:
