@@ -53,6 +53,8 @@ jobs:
           cd php-memcached
           phpize
       - name: configure
+      
+      
         run: |
           cd php-memcached
           configure --enable-memcached=shared --enable-memcached-session --enable-memcached-json --with-php-build=..\deps --with-prefix=${{steps.setup-php.outputs.prefix}} --with-config-file-path=${{steps.setup-php.outputs.prefix}}
