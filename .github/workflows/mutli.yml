@@ -19,6 +19,10 @@ jobs:
           curl -L http://static.runoob.com/download/memcached-1.4.5-amd64.zip -o memcached.zip
           7z x memcached.zip -o.\mem
           mem\memcached-amd64\memcached.exe -d
+      - name: create dir
+        run: |
+          mkdir -p ${{github.workspace}}/php7.4-x64-ts ${{github.workspace}}/php7.4-x64-nts ${{github.workspace}}/php80-x64-ts ${{github.workspace}}/php7.4-x64-nts ${{github.workspace}}/php8.1-x64-ts ${{github.workspace}}/php7.4-x64-nts
+    
       
   ts74-x64:
     needs: pre
@@ -81,6 +85,34 @@ jobs:
         run: php --ini
       - name: php module
         run: php -m
-      - name: test
-        run: nmake test
-        
+      #- name: test
+      #  run: nmake test
+      - name: Accidentally upload to the same artifact via multiple jobs
+        uses: actions/upload-artifact@v3
+        with:
+            name: my-artifact
+            path: ${{ github.workspace }}/php${{matrix.version}}-${{matrix.arch}}-${{matrix.ts}}
+      #- name: create zip
+      #  run: |
+      #    zip -r ${{steps.setup-php.outputs.prefix}}/php-7.4-x64.zip ${{steps.setup-php.outputs.prefix}}/libmemcached.dll ${{steps.setup-php.outputs.prefix}}/ext/php_memcached.dll
+  create_tag:   
+    needs: pre
+    defaults:
+      run:
+        shell: cmd
+    runs-on: windows-2019
+    steps: 
+      - name: delete_tag
+        uses: dev-drprasad/delete-tag-and-release@v0.2.0
+        with:
+          delete_release: true # default: false
+          tag_name: sample # tag name to delete
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: create release
+        uses: ncipollo/release-action@v1
+        with:
+          artifacts: "${{github.workspace}}/php7.4-x64-ts ${{github.workspace}}/php7.4-x64-nts ${{github.workspace}}/php80-x64-ts ${{github.workspace}}/php7.4-x64-nts ${{github.workspace}}/php8.1-x64-ts ${{github.workspace}}/php7.4-x64-nts"
+          token: ${{ secrets.GITHUB_TOKEN }}
+          prerelease: true
+          tag: sample
