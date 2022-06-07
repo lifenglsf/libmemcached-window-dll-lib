@@ -19,7 +19,7 @@ jobs:
           curl -L http://static.runoob.com/download/memcached-1.4.5-amd64.zip -o memcached.zip
           7z x memcached.zip -o.\mem
           mem\memcached-amd64\memcached.exe -d
-      -
+      
   ts74-x64:
     needs: pre
     defaults:
