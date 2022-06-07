@@ -8,7 +8,7 @@ jobs:
     strategy:
       matrix:
           version: ["7.4"]
-          arch: [x64]
+          arch: [x64,x86]
           ts: [ts]
     runs-on: windows-2019
     steps:
@@ -84,7 +84,7 @@ jobs:
       - name: create release
         uses: ncipollo/release-action@v1
         with:
-          artifacts: "${{steps.setup-php.outputs.prefix}}/libmemcached.dll ${{steps.setup-php.outputs.prefix}}/ext/php_memcached.dll,${{steps.setup-php.outputs.prefix}}/php-7.4-x64.zip"
+          artifacts: "${{steps.setup-php.outputs.prefix}}/libmemcached.dll,${{steps.setup-php.outputs.prefix}}/ext/php_memcached.dll,${{steps.setup-php.outputs.prefix}}/php-7.4-x64.zip"
           token: ${{ secrets.GITHUB_TOKEN }}
           prerelease: true
           tag: latest
