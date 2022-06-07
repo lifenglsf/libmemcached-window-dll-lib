@@ -81,6 +81,6 @@ jobs:
         run: php --ini
       - name: php module
         run: php -m
-      #- name: test
-      #  run: nmake test
+      - name: test
+        run: nmake test
         
