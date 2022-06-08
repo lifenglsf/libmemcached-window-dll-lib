@@ -84,8 +84,8 @@ jobs:
         run: php -m
       - name: copy file
         run: |
-          copy ..\deps\bin\libmemcached.dll ${{ github.workspace }}/php${{matrix.version}}-${{matrix.arch}}-${{matrix.ts}}
-          copy ${{steps.setup-php.outputs.prefix}}/ext/php_memcached.dll ${{ github.workspace }}/php${{matrix.version}}-${{matrix.arch}}-${{matrix.ts}}
+          copy ..\deps\bin\libmemcached.dll ${{ github.workspace }}\php${{matrix.version}}-${{matrix.arch}}-${{matrix.ts}}
+          copy ${{steps.setup-php.outputs.prefix}}\ext\php_memcached.dll ${{ github.workspace }}\php${{matrix.version}}-${{matrix.arch}}-${{matrix.ts}}
           
       #- name: test
       #  run: nmake test
