@@ -114,7 +114,7 @@ jobs:
       - name: create release
         uses: ncipollo/release-action@v1
         with:
-          artifacts: "${{github.workspace}}/php7.4-x64-ts,${{github.workspace}}/php80-x64-ts,,${{github.workspace}}/php8.1-x64-ts"
+          artifacts: "${{github.workspace}}\\php7.4-x64-ts,${{github.workspace}}\\php8.0-x64-ts,${{github.workspace}}\\php8.1-x64-ts"
           token: ${{ secrets.GITHUB_TOKEN }}
           prerelease: true
           tag: sample
