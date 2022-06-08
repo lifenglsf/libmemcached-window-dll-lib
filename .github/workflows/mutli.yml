@@ -86,7 +86,7 @@ jobs:
         run: |
           copy ..\deps\bin\libmemcached.dll ${{ github.workspace }}\php${{matrix.version}}-${{matrix.arch}}-${{matrix.ts}}
           copy ${{steps.setup-php.outputs.prefix}}\ext\php_memcached.dll ${{ github.workspace }}\php${{matrix.version}}-${{matrix.arch}}-${{matrix.ts}}
-          dir ${{ github.workspace }}\php${{matrix.version}}-${{matrix.arch}}-${{matrix.ts}} /N /S
+          dir ${{ github.workspace }}\php${{matrix.version}}-${{matrix.arch}}-${{matrix.ts}}
           7z a php${{matrix.version}}-${{matrix.arch}}-${{matrix.ts}}.7z ${{ github.workspace }}\php${{matrix.version}}-${{matrix.arch}}-${{matrix.ts}}\*.*
           
       #- name: test
