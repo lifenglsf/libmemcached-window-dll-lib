@@ -28,7 +28,7 @@ jobs:
     runs-on: windows-2019
     strategy:
       matrix:
-          version: ["7.4","8.0","8.1"]
+          version: ["7.4"]
           arch: [x64]
           ts: [ts]
     steps:
@@ -86,6 +86,7 @@ jobs:
         run: |
           copy ..\deps\bin\libmemcached.dll ${{ github.workspace }}\php${{matrix.version}}-${{matrix.arch}}-${{matrix.ts}}
           copy ${{steps.setup-php.outputs.prefix}}\ext\php_memcached.dll ${{ github.workspace }}\php${{matrix.version}}-${{matrix.arch}}-${{matrix.ts}}
+          dir ${{ github.workspace }}\php${{matrix.version}}-${{matrix.arch}}-${{matrix.ts}} /N /S
           7z a php${{matrix.version}}-${{matrix.arch}}-${{matrix.ts}}.7z ${{ github.workspace }}\php${{matrix.version}}-${{matrix.arch}}-${{matrix.ts}}\*.*
           
       #- name: test
