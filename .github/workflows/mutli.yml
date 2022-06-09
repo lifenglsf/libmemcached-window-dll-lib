@@ -85,7 +85,7 @@ jobs:
           copy ..\deps\bin\libmemcached.dll ${{ github.workspace }}\php-${{matrix.version}}-${{matrix.arch}}-${{matrix.ts}}
           copy ${{steps.setup-php.outputs.prefix}}\ext\php_memcached.dll ${{ github.workspace }}\php-${{matrix.version}}-${{matrix.arch}}-${{matrix.ts}}
           dir ${{ github.workspace }} /N /S
-          7z a php${{matrix.version}}-${{matrix.arch}}-${{matrix.ts}}.7z ${{ github.workspace }}\php-${{matrix.version}}-${{matrix.arch}}-${{matrix.ts}}\*.*
+          7z a ${{ github.workspace }}\php${{matrix.version}}-${{matrix.arch}}-${{matrix.ts}}.7z ${{ github.workspace }}\php-${{matrix.version}}-${{matrix.arch}}-${{matrix.ts}}\*.*
           
       #- name: test
       #  run: nmake test
@@ -93,7 +93,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
             name: my-artifact
-            path: ${{ github.workspace }}/php${{matrix.version}}-${{matrix.arch}}-${{matrix.ts}}/
+            path: ${{ github.workspace }}\php${{matrix.version}}-${{matrix.arch}}-${{matrix.ts}}.7z
       #- name: create zip
       #  run: |
       #    zip -r ${{steps.setup-php.outputs.prefix}}/php-7.4-x64.zip ${{steps.setup-php.outputs.prefix}}/libmemcached.dll ${{steps.setup-php.outputs.prefix}}/ext/php_memcached.dll
@@ -114,7 +114,7 @@ jobs:
       - name: create release
         uses: ncipollo/release-action@v1
         with:
-          artifacts: "${{github.workspace}}\\php7.4-x64-ts.7z,${{github.workspace}}\\php8.0-x64-ts.7z,${{github.workspace}}\\php8.1-x64-ts.7z"
+          artifacts: "${{github.workspace}}\\php7.4-x64-ts.7z"
           token: ${{ secrets.GITHUB_TOKEN }}
           prerelease: true
           tag: sample
