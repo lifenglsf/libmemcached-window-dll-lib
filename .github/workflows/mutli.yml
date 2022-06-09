@@ -21,7 +21,7 @@ jobs:
           mem\memcached-amd64\memcached.exe -d
       
   ts74-x64:
-    needs: pre
+    needs: [pre]
     defaults:
       run:
         shell: cmd
@@ -98,7 +98,7 @@ jobs:
       #  run: |
       #    zip -r ${{steps.setup-php.outputs.prefix}}/php-7.4-x64.zip ${{steps.setup-php.outputs.prefix}}/libmemcached.dll ${{steps.setup-php.outputs.prefix}}/ext/php_memcached.dll
   create_tag:   
-    needs: ts74-x64
+    needs: [ts74-x64]
     defaults:
       run:
         shell: cmd
