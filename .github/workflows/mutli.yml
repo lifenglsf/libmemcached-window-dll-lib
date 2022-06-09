@@ -32,10 +32,6 @@ jobs:
           arch: [x64]
           ts: [ts]
     steps:
-      - name: create dir
-        run: |
-          mkdir -p ${{github.workspace}}\ahp-${{matrix.version}}-${{matrix.arch}}-${{matrix.ts}}
-          dir ${{ github.workspace }} /N /S
       - name: Checkout memcached
         uses: actions/checkout@v2
         with:
@@ -85,11 +81,11 @@ jobs:
         run: php -m
       - name: copy file
         run: |
+          mkdir -p ${{github.workspace}}\php-${{matrix.version}}-${{matrix.arch}}-${{matrix.ts}}
+          copy ..\deps\bin\libmemcached.dll ${{ github.workspace }}\php-${{matrix.version}}-${{matrix.arch}}-${{matrix.ts}}
+          copy ${{steps.setup-php.outputs.prefix}}\ext\php_memcached.dll ${{ github.workspace }}\php-${{matrix.version}}-${{matrix.arch}}-${{matrix.ts}}
           dir ${{ github.workspace }} /N /S
-          copy ..\deps\bin\libmemcached.dll ${{ github.workspace }}\ahp-${{matrix.version}}-${{matrix.arch}}-${{matrix.ts}}
-          copy ${{steps.setup-php.outputs.prefix}}\ext\php_memcached.dll ${{ github.workspace }}\ahp-${{matrix.version}}-${{matrix.arch}}-${{matrix.ts}}
-          dir ${{ github.workspace }} /N /S
-          7z a php${{matrix.version}}-${{matrix.arch}}-${{matrix.ts}}.7z ${{ github.workspace }}\php${{matrix.version}}-${{matrix.arch}}-${{matrix.ts}}\*.*
+          7z a php${{matrix.version}}-${{matrix.arch}}-${{matrix.ts}}.7z ${{ github.workspace }}\php-${{matrix.version}}-${{matrix.arch}}-${{matrix.ts}}\*.*
           
       #- name: test
       #  run: nmake test
