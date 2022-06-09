@@ -22,7 +22,9 @@ jobs:
       
   ts74-x64:
     needs: [pre]
-   
+    defaults:
+      run:
+        shell: cmd
     runs-on: windows-2019
     strategy:
       matrix:
