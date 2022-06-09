@@ -87,13 +87,13 @@ jobs:
           dir ${{ github.workspace }} /N /S
           7z a ${{ github.workspace }}\php${{matrix.version}}-${{matrix.arch}}-${{matrix.ts}}.7z ${{ github.workspace }}\php-${{matrix.version}}-${{matrix.arch}}-${{matrix.ts}}\*.*
           
-      - name: test
-        run: nmake test
-      #- name: Accidentally upload to the same artifact via multiple jobs
-      #  uses: actions/upload-artifact@v3
-      #  with:
-      #      name: my-artifact
-      #      path: ${{ github.workspace }}\php${{matrix.version}}-${{matrix.arch}}-${{matrix.ts}}.7z
+      #- name: test
+      #  run: nmake test
+      - name: Accidentally upload to the same artifact via multiple jobs
+        uses: actions/upload-artifact@v3
+        with:
+            name: php${{matrix.version}}-${{matrix.arch}}-${{matrix.ts}}
+            path: ${{ github.workspace }}\php${{matrix.version}}-${{matrix.arch}}-${{matrix.ts}}.7z
       #- name: create zip
       #  run: |
       #    zip -r ${{steps.setup-php.outputs.prefix}}/php-7.4-x64.zip ${{steps.setup-php.outputs.prefix}}/libmemcached.dll ${{steps.setup-php.outputs.prefix}}/ext/php_memcached.dll
@@ -104,6 +104,10 @@ jobs:
         shell: cmd
     runs-on: windows-2019
     steps: 
+      - name : download artifact
+        uses: marcofaggian/action-download-multiple-artifacts@v3
+        with:
+          name: php7.4-x64-ts
       - name: show file
         run: |
           dir ${{ github.workspace }} /N /S
