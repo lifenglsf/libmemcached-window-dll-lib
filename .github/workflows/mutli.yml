@@ -28,7 +28,7 @@ jobs:
     runs-on: windows-2019
     strategy:
       matrix:
-          version: ["7.4"]
+          version: ["7.4","8.0","8.1"]
           arch: [x64]
           ts: [ts]
     steps:
@@ -121,7 +121,7 @@ jobs:
       - name: create release
         uses: ncipollo/release-action@v1
         with:
-          artifacts: "${{github.workspace}}\\php7.4-x64-ts.7z"
+          artifacts: "${{github.workspace}}\\php7.4-x64-ts.7z,${{github.workspace}}\\php8.0-x64-ts.7z,${{github.workspace}}\\php8.1-x64-ts.7z"
           token: ${{ secrets.GITHUB_TOKEN }}
           prerelease: true
           tag: sample
