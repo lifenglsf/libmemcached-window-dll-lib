@@ -35,6 +35,7 @@ jobs:
       - name: create dir
         run: |
           mkdir -p ${{github.workspace}}\ahp-${{matrix.version}}-${{matrix.arch}}-${{matrix.ts}}
+          dir ${{ github.workspace }} /N /S
       - name: Checkout memcached
         uses: actions/checkout@v2
         with:
