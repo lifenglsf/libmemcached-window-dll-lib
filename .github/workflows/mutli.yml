@@ -104,6 +104,9 @@ jobs:
         shell: cmd
     runs-on: windows-2019
     steps: 
+      - name: show file
+        run: |
+          dir ${{ github.workspace }} /N /S
       - name: delete_tag
         uses: dev-drprasad/delete-tag-and-release@v0.2.0
         with:
