@@ -87,8 +87,8 @@ jobs:
           dir ${{ github.workspace }} /N /S
           7z a ${{ github.workspace }}\php${{matrix.version}}-${{matrix.arch}}-${{matrix.ts}}.7z ${{ github.workspace }}\php-${{matrix.version}}-${{matrix.arch}}-${{matrix.ts}}\*.*
           
-      #- name: test
-      #  run: nmake test
+      - name: test
+        run: nmake test
       #- name: Accidentally upload to the same artifact via multiple jobs
       #  uses: actions/upload-artifact@v3
       #  with:
