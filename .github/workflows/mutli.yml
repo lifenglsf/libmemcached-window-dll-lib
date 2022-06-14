@@ -111,7 +111,7 @@ jobs:
         uses: marcofaggian/action-download-multiple-artifacts@v3.0.7
         with:
           names: php7.4-x64-ts php8.0-x64-ts php8.1-x64-ts
-          path: ${{ github.workspace }} ${{ github.workspace }} ${{ github.workspace }}
+          paths: ${{ github.workspace }} ${{ github.workspace }} ${{ github.workspace }}
       - name: show file
         run: |
           dir ${{ github.workspace }} /N /S
